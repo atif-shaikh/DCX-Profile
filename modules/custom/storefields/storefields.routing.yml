@@ -1,0 +1,5 @@
+csvimport.import_form:
+  defaults:
+    _form: \Drupal\storefields\Form\StoreFieldsForm
+  requirements:
+    _permission: 'access content'

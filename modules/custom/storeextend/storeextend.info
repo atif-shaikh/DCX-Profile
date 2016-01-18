@@ -1,0 +1,5 @@
+; $Id:$
+name = Store information extend field
+description = Example for screenshots on the tech blog
+core = 7.x
+package = custom

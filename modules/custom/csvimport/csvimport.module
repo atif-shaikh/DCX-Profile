@@ -1,0 +1,320 @@
+<?php
+
+/**
+ * Implements hook_menu()
+ */
+function csvimport_menu() {
+  $items['file-uploader'] = array(
+    'title' => 'Upload File',
+    //'type' => MENU_NORMAL_ITEM,
+    'description' => 'Import a csv',
+    'page callback' => 'drupal_get_form',
+    'route_name' => 'csvimport.import_form',
+    'page arguments' => array('csvimport_import_form'),
+    //'access arguments' => array('administer uploader'),
+  );
+  return $items;
+}
+function csvimport_permission() {
+  return array(
+    'access content' => array(
+      'title' => t('Access the page'),
+    ),
+  );
+}
+/**
+ * Builds a form that will allow users to upload csv files
+ *
+ * @see
+ *   hook_menu()
+ */
+function csvimport_import_batch_processing($data) {
+  if ($data[39] == 'Drupal'){
+  // Lets make the variables more readable.
+  $employeeId = $data[0];
+  $employeeName = $data[1];
+  $userId = $data[2];
+  $email = $data[3];
+  $employeeStatus = $data[7];
+  $hireDate = $data[8];
+  $birthDate = $data[9];
+  $employeeType = $data[10];
+  $employeeUnit = $data[11];
+  $loanedIn = $data[12];
+  $onsite = $data[13];
+  $projectName = preg_replace('/[^(\x20-\x7F)]*/','',htmlentities($data[19]));
+  $accountName = preg_replace('/[^(\x20-\x7F)]*/','',htmlentities($data[24]));
+  $allocationStartDate = $data[26] != "" ? date('Y-m-d', strtotime(str_replace("/","-",$data[26]))):"";
+  $allocationEndDate = $data[27] != "" ? date('Y-m-d', strtotime(str_replace("/","-",$data[27]))):"";
+  $fte = $data[28];
+  $benchstatus = $data[30];
+  $projectPursuitName = $data[31];
+  $projectPursuitFlag = $data[32];
+  $comment = preg_replace('/[^(\x20-\x7F)]*/','',htmlentities($data[33]));
+  $egManager = $data[34];
+  $projectManager = $data[35];
+  $aging = $data[36];
+  $rollOff = $data[37];
+  $rr = $data[38];
+  $primarySkills = preg_replace('/[^(\x20-\x7F)]*/','',htmlentities($data[39]));
+  $skillCategory = $data[40];
+  $skillCompetency = $data[41];
+  $secondarySkills = preg_replace('/[^(\x20-\x7F)]*/','',htmlentities($data[42]));
+  $supId = $data[44];
+  $supervisorName = $data[45];
+  $Gender = $data[46];
+  $resignedDate = $data[47] != "" ? date('Y-m-d', strtotime(str_replace("/","-",$data[47]))):"";
+  $terminationDate = $data[48] != "" ? date('Y-m-d', strtotime(str_replace("/","-",$data[48]))):"";
+  $transferOutDate = $data[49] != "" ? date('Y-m-d', strtotime(str_replace("/","-",$data[49]))):"";
+  $transferInDate = $data[50] != "" ? date('Y-m-d', strtotime(str_replace("/","-",$data[50]))):"";
+  $n1Id = $data[51];
+  $n1Name = $data[52];
+  $fresher = $data[53];
+  $fresherCaptureType = $data[54];
+  $BillabilityPlan = isset($data[55]) ? $data[55] :"";
+  $contactNo = $data[56];
+  $COL = $data[57];
+  $abscondee = $data[58];
+  $billabilityplanDate = $data[59] != "" ? date('Y-m-d', strtotime(str_replace("/","-",$data[59]))):"";
+  $paceSubBu = str_replace('?', ' - ', utf8_decode($data[14]));
+  $prjSubBUstring = str_replace('?', ' - ', utf8_decode($data[20]));
+  $taxonomyTerm = array();
+  $taxonomyArray = array($data[4],$data[5],$data[6],$paceSubBu,$data[15],$data[16],$data[17],$data[18],$prjSubBUstring,$data[21],$data[22],$data[23],$data[25],$data[29],$data[43],$accountName,$projectName,$primarySkills);
+  foreach ($taxonomyArray as $value) {
+    $taxonomuTermId = \Drupal::entityQuery('taxonomy_term')
+  ->Condition('name', $value)
+  ->execute();
+  $taxonomyTerm[] = reset($taxonomuTermId);
+  }
+
+  // Find out if the node already exists by looking up its serial number. Each serial number should be unique. You can use whatever you want.
+   $nid = \Drupal::entityQuery('node')
+    ->Condition('field_employee_id', $employeeId,'=')
+    ->execute();
+  if(!empty($nid)) {
+    // The node exists! Load it.
+    $node = \Drupal::entityManager()->getStorage('node')->load(reset($nid));
+
+    // Change the values. No need to update the serial number though.
+    //import all fields
+    $node->field_employee_id = $employeeId;
+    $node->title = $employeeName;
+    $node->field_user_id = $userId;
+    $node->field_email = $email;
+    $node->field_emp_status = $employeeStatus;
+    $node->field_hire_date = $hireDate;
+    $node->field_birthdate = $birthDate;
+    $node->field_employee_type = $employeeType;
+    $node->field_employee_unit = $employeeUnit;
+    $node->field_loaned_in = $loanedIn;
+    $node->field_onsite = $onsite;
+    $node->field_fte_ = $fte;
+    $node->field_bench_status = $benchstatus;
+    $node->field_project_pursuit_name = $projectPursuitName;
+    $node->field_comment = $comment;
+    $node->field_eg_manager = $egManager;
+    $node->field_project_manager = $projectManager;
+    $node->field_aging = $aging;
+    $node->field_rolloff = $rollOff;
+    $node->field_rr = $rr;
+    $node->field_skill_category = $skillCategory;
+    $node->field_skill_competency = $skillCompetency;
+    $node->field_secondary_skills = $secondarySkills;
+    $node->field_sup_id = $supId;
+    $node->field_supervisor_name = $supervisorName;
+    $node->field_gender = $Gender;
+    $node->field_resigned_date = $resignedDate;
+    $node->field_termination_date = $terminationDate;
+    $node->field_transfer_out_date = $transferOutDate;
+    $node->field_transfer_in_date = $transferInDate;
+    $node->field_n_1_id = $n1Id;
+    $node->field_n1_name = $n1Name;
+    $node->field_fresher = $fresher;
+    $node->field_fresher_capture_yype = $fresherCaptureType;
+    $node->field_billability_plan = $field_billability_plan;
+    $node->field_contact_no = $contactNo;
+    $node->field_col = $COL;
+    $node->field_abscondee = $abscondee;
+    $node->field_billabilityplan_date = $billabilityplanDate;
+
+    //import taxonomy field
+    if ($taxonomyTerm[0]) {
+      $node->field_level = $taxonomyTerm[0];
+    }
+    if ($taxonomyTerm[1]){
+      $node->field_grade = $taxonomyTerm[1];
+    }
+    if ($taxonomyTerm[2]){
+      $node->field_location = $taxonomyTerm[2];
+    }
+    if ($taxonomyTerm[4]){
+      $node->field_parent_bu = $taxonomyTerm[4];
+    }
+    if ($taxonomyTerm[5]){
+      $node->field_serviceline = $taxonomyTerm[5];
+    }
+    if ($taxonomyTerm[6]){
+      $node->field_practice = 26;
+    }
+    if ($taxonomyTerm[7]){
+      $node->field_parent_bu = 27;
+    }
+
+    if ($taxonomyTerm[9]){
+      $node->field_delivery_unit = $taxonomyTerm[9];
+    }
+    if ($taxonomyTerm[10]){
+      $node->field_prj_country = $taxonomyTerm[10];
+    }
+    if ($taxonomyTerm[11]){
+      $node->field_prj_region = $taxonomyTerm[11];
+    }
+
+    if ($taxonomyTerm[12]){
+      $node->field_engagement_name = $taxonomyTerm[12];
+    }
+     if ($taxonomyTerm[13]){
+      $node->field_resource_billable_status = $taxonomyTerm[13];
+    }
+     if ($taxonomyTerm[14]){
+      $node->field_role = $taxonomyTerm[14];
+    }
+    if ($taxonomyTerm[3]){
+      $node->field_pace_sub_bu = $taxonomyTerm[3];
+    }
+    if ($taxonomyTerm[8]){
+      $node->field_prj_subbu = $taxonomyTerm[8];
+    }
+	if ($taxonomyTerm[17]){
+      $node->field_primary_skills = $taxonomyTerm[17];
+    }
+
+    $node->save();
+  }
+  else {
+    // The node does not exist! Create it.
+    $user = \Drupal::currentUser();
+    $new_page_values = array();
+    $new_page_values['type'] = 'dcx_resource_list_05_10_2015';
+    $new_page_values['status'] = 1;
+
+    //import all fields
+    $new_page_values['field_employee_id'] = $employeeId;
+    $new_page_values['uid'] = $user->id();
+    $new_page_values['title'] = $employeeName;
+    $new_page_values['field_user_id'] = $userId;
+    $new_page_values['field_email'] = $email;
+    $new_page_values['field_emp_status'] = $employeeStatus;
+    $new_page_values['field_hire_date'] = $hireDate;
+    $new_page_values['field_birthdate'] = $birthDate;
+    $new_page_values['field_employee_type'] = $employeeType;
+    $new_page_values['field_employee_unit'] = $employeeUnit;
+    $new_page_values['field_loaned_in'] = $loanedIn;
+    $new_page_values['field_onsite'] = $onsite;
+    $new_page_values['field_fte_'] = $fte;
+    $new_page_values['field_bench_status'] = $benchstatus;
+    $new_page_values['field_project_pursuit_name'] = $projectPursuitName;
+    $new_page_values['field_project_pursuit_flag'] = $projectPursuitFlag;
+    $new_page_values['field_comment'] = htmlentities($comment);
+    $new_page_values['field_eg_manager'] = $egManager;
+    $new_page_values['field_project_manager'] = $projectManager;
+    $new_page_values['field_aging'] = $aging;
+    $new_page_values['field_rolloff'] = $rollOff;
+    $new_page_values['field_rr'] = $rr;
+    $new_page_values['field_skill_category'] = $skillCategory;
+    $new_page_values['field_skill_competency'] = $skillCompetency;
+    $new_page_values['field_secondary_skills'] = htmlentities($secondarySkills);
+    $new_page_values['field_sup_id'] = $supId;
+    $new_page_values['field_supervisor_name'] = $supervisorName;
+    $new_page_values['field_gender'] = $Gender;
+    $new_page_values['field_resigned_date'] = $resignedDate;
+    $new_page_values['field_termination_date'] = $terminationDate;
+    $new_page_values['field_transfer_out_date'] = $transferOutDate;
+    $new_page_values['field_transfer_in_date'] = $transferInDate;
+    $new_page_values['field_n_1_id'] = $n1Id;
+    $new_page_values['field_n1_name'] = $n1Name;
+    $new_page_values['field_fresher'] = $fresher;
+    $new_page_values['field_fresher_capture_yype'] = $fresherCaptureType;
+    $new_page_values['field_billability_plan'] = $BillabilityPlan;
+    $new_page_values['field_contact_no'] = $contactNo;
+    $new_page_values['field_col'] = $COL;
+    $new_page_values['field_abscondee'] = $abscondee;
+    $new_page_values['field_billabilityplan_date'] = $billabilityplanDate;
+
+    //import taxonomy field
+    if ($taxonomyTerm[0]) {
+      $new_page_values['field_level'] = $taxonomyTerm[0];
+    }
+    if ($taxonomyTerm[1]){
+      $new_page_values['field_grade'] = $taxonomyTerm[1];
+    }
+    if ($taxonomyTerm[2]){
+      $new_page_values['field_location'] = $taxonomyTerm[2];
+    }
+    if ($taxonomyTerm[4]){
+      $new_page_values['field_parent_bu'] = $taxonomyTerm[4];
+    }
+    if ($taxonomyTerm[5]){
+      $new_page_values['field_serviceline'] = $taxonomyTerm[5];
+    }
+    if ($taxonomyTerm[6]){
+      $new_page_values['field_practice'] = $taxonomyTerm[6];
+    }
+    if ($taxonomyTerm[7]){
+      $new_page_values['field_parent_bu'] = $taxonomyTerm[7];
+    }
+
+    if ($taxonomyTerm[9]){
+      $new_page_values['field_delivery_unit'] = $taxonomyTerm[9];
+    }
+    if ($taxonomyTerm[10]){
+      $new_page_values['field_prj_country'] = $taxonomyTerm[10];
+    }
+    if ($taxonomyTerm[11]){
+      $new_page_values['field_prj_region'] = $taxonomyTerm[11];
+    }
+
+    if ($taxonomyTerm[12]){
+      $new_page_values['field_engagement_name'] = $taxonomyTerm[12];
+    }
+     if ($taxonomyTerm[13]){
+      $new_page_values['field_resource_billable_status'] = $taxonomyTerm[13];
+    }
+     if ($taxonomyTerm[14]){
+      $new_page_values['field_role'] = $taxonomyTerm[14];
+    }
+    if ($taxonomyTerm[3]){
+      $new_page_values['field_pace_sub_bu'] = $taxonomyTerm[3];
+    }
+    if ($taxonomyTerm[8]){
+      $new_page_values['field_prj_subbu'] = $taxonomyTerm[8];
+    }
+	if ($taxonomyTerm[17]){
+      $new_page_values['field_primary_skills'] = $taxonomyTerm[17];
+    }
+
+    $node = entity_create('node', $new_page_values);
+    $node->save();
+  }
+  $field_collection_item = \Drupal::entityManager()->getStorage('field_collection_item')->create(array('field_name' => 'field_test'));
+	if ($taxonomyTerm[15]) {
+	   $field_collection_item->field_account_name = $taxonomyTerm[15];
+	}
+	if ($taxonomyTerm[16]){
+	  $field_collection_item->field_project_name = $taxonomyTerm[16];
+	}
+    $field_collection_item->field_start_date = $allocationStartDate;
+    $field_collection_item->field_end_date = $allocationEndDate;
+	
+    // Save field collection item
+    $field_collection_item->setHostEntity($node);
+    $field_collection_item->save(TRUE);
+  }
+}
+function csvimport_form_alter(&$form, &$form_state, $form_id) {
+	$account = \Drupal::currentUser();
+	$userRoles = $account->getRoles();
+	if (($form_id == 'node_resource_request_form' || $form_id == 'node_resource_request_edit_form' ) && !in_array('administrator', $userRoles)) {
+	  $form['field_propose_resourse']['#access'] = FALSE;
+  }
+}

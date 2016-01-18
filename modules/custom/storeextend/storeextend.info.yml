@@ -1,0 +1,5 @@
+name: 'Store information extend field'
+description: 'Example for screenshots on the tech blog'
+core: 8.x
+package: custom
+type: module

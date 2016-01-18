@@ -1,0 +1,6 @@
+csvimport.csvimport:
+  title: Upload Files
+  description: 'Upload CSV Files'
+  menu_name: account
+  route_name: csvimport.import_form
+  weight: 1

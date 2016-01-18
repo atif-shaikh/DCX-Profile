@@ -1,0 +1,13 @@
+{
+    "name": "pratiksha/mp",
+    "authors": [
+        {
+            "name": "Pratiksha Dubey",
+            "email": "pratikshadubey5@gmail.com"
+        }
+    ],
+    "require-dev": {
+"drupal/core": "8.0.*@dev",
+"phpunit/phpunit": "4.6.*"
+},
+}

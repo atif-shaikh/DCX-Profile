@@ -1,0 +1,8 @@
+csvimport.import_form:
+  path: /file-uploader
+  defaults:
+    _title: 'Import Resources'
+    _form: \Drupal\csvimport\Form\CsvimportImportForm
+  requirements:
+    _permission: 'access content'
+    menu_name: account

@@ -1,0 +1,5 @@
+name: 'CSV Import'
+description: 'Import content'
+core: 8.x
+package: custom
+type: module

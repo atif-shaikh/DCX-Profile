@@ -1,0 +1,391 @@
+body {
+  background: #f1f0ee;
+}
+main {
+  margin: 0 auto;
+  width: 1008px;
+  background: #fff;
+}
+.layout-container {
+	margin: 0 0 60px 0;
+}
+.region.region-content {
+  padding: 10px 20px 20px 20px;
+  min-height: 400px;
+}
+.menu-item a.is-active {
+  margin-left: 0 !important;
+}
+.region-top-header ul.menu {
+  margin-left: 2em;
+}
+/*
+#block-portal-content{
+	padding: 20px;
+}*/
+.path-batch .left-right-header {
+  display: none;
+}
+
+.left-right-header {
+  background : transparent url(../images/border-header.png) repeat-x bottom;
+  height:94px;
+}
+.region-left-header {
+  float: left;
+  width: 28%;
+  margin: 20px;
+}
+.region-right-header {
+  width: 50%;
+  float: right;
+  margin: 20px 20px 20px 30px;
+}
+h1 {
+  font-weight: normal;
+  }
+#block-portal-main-menu  a {
+	color : #00a1d5;
+	text-decoration: none;
+}
+.region-top-header{
+  position: relative;
+  overflow: hidden;
+  background: #314048;
+}
+.region-top-header a,
+.region-top-header a.is-active {
+	color: #fff !important;
+	text-decoration: none;
+}
+#block-portal-account-menu {
+  width:1083px;
+  margin-left:auto;
+  margin-right:auto;
+}
+#block-portal-branding{
+  /*background : transparent url(../images/comma-white.png)no-repeat;
+  width:1083px;
+  margin-left:auto;
+  margin-right:auto;*/
+  float: right;
+}
+footer{
+  position: fixed;
+  background: #0f4155;
+  width: 100%;
+  color: #fff;
+  display: block;
+  bottom: 0;
+  z-index: 1000;
+}
+.region-footer{
+	width:1083px;
+	margin-left:auto;
+	margin-right:auto;
+}
+.region-footer .tagline {
+ background: url(../images/ticker_tagline.png) no-repeat;
+ overflow: hidden;
+ text-indent: -9999px;
+ display: block;
+ /*width: 16px;*/
+ height: 50px;	
+}
+#block-tagline {
+  margin-left: 40px;
+}
+#block-homepagedummy, #block-homepagedummy-2, #block-homepagedummy-3, #block-homepagedummy-4{
+	float:left;
+	width:47%;
+	margin :10px;
+}
+#block-portal-account-menu ul li,#block-portal-main-menu ul li {
+  float:left;
+  padding : 10px;
+}
+body.path-user h1.js-quickedit-page-title.page-title, 
+.path-resource-list h1,
+#block-searchprofile h2,
+.path-resource-request-list h1,
+.path-file-uploader h1,
+.user-logged-in h1,
+#block-views-block-resource-filter-block-1 h2 {
+  background-color: #66c6e7;
+  color: #fff;
+  padding: 10px;
+  font-size: 2.0em;
+  font-weight: normal;
+  margin: 0 0;
+}
+.views-view-table{
+	min-width: 100%;
+}
+/* DCX heading */
+#block-dcx p{
+  font-size: 40px;
+  margin: 0;
+  color: #00a1d5;
+}
+/* DCX node */
+.node--type-resource-request fieldset {
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+.node--type-dcx-resource-list-05-10-2015 .fieldset-legend,.node--type-resource-request .fieldset-legend{
+  font-weight: bold;
+  margin: 10px;
+}
+.node--type-dcx-resource-list-05-10-2015 .field__item,.node--type-resource-request .field__item{
+  font-family: serif;
+}
+.node--type-dcx-resource-list-05-10-2015 .field__label,.node--type-resource-request .field__label{
+  font-weight: normal;
+  width:23%;
+  font-family: serif;
+}
+.node--type-dcx-resource-list-05-10-2015 .field--label-inline,.node--type-resource-request .field--label-inline{
+  margin: 5px;
+  padding-bottom: 5px;
+  min-height: 20px;
+  clear: both;
+  border-bottom: 1px solid #c0c0c0;
+  font-size: 18px;
+}
+.field--name-field-grade {
+  border-bottom: none !important;
+}
+.node--type-dcx-resource-list-05-10-2015  .field--label-inline .field__label::after,.node--type-resource-request .field--label-inline .field__label::after {
+  margin-left: 5px;
+}
+.field--name-field-test  .field__item{
+	border: 1px solid gray;
+	margin: 5px;
+}
+.field--name-field-test  .field__item .field__item{
+	border: none;
+}
+/* Resource Search */
+#block-exposedformresource-listpage-1 .form-item,
+.resource-search .form--inline .form-item {
+  float: none;
+}
+#block-exposedformresource-listpage-1 label,
+.resource-search label {
+  width: 120px;
+display: block;
+float: left;
+margin-right:10px;
+}
+.resource-search thead tr {
+  background: #00a1d5;
+  border-top: 2px solid gray;
+  border-bottom: 2px solid gray;
+}
+.resource-search th {
+  text-align : left;
+  color : #fff;
+}
+.resource-search th, .resource-search td{
+  padding: 10px;
+  margin : 20px;
+}
+.resource-search tbody tr {
+  background: #f1f0ee;
+  border-bottom : 1px solid gray;
+}
+.resource-search td a {
+  text-decoration : none;
+  color : blue;
+  text-transform: capitalize;
+}
+#block-exposedformresource-listpage-1 .form-submit,
+.resource-search .form-submit {
+  width: 100px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.resource-search .pager__items {
+  /*text-align : left;*/
+  color : #000;
+  text-decoration : none;
+}
+.resource-search .pager__items li a{
+  color : #000;
+  text-decoration : none;
+}
+/* user login */
+#user-login-form input#edit-submit{
+	background-color: #00a0d7;
+	color: #fff;
+	font-size: 1.125em;
+	padding: 8px 14px;
+}
+#user-login-form label.js-form-required.form-required{
+	display: block;
+	line-height: 35px;
+	font-family: HelveticaLTStdLight,helvetica,arial;
+	margin-bottom: 10px;
+}
+#user-login-form {
+	display: block;
+}
+#user-login-form div#edit-name--description {
+	margin-top: 4px;
+}
+#user-login-form div#edit-pass--description {
+	margin-top: 4px;
+}
+#user-login-form input#edit-name, input#edit-pass{
+	background-color: #f0f0f0 !important;
+	border: none;
+	height: 20px;
+	padding: 5px;
+	font-size: 0.9375em;
+	font-weight: normal !important;
+	font-family: Arial
+
+}
+/*
+body.path-user h1.js-quickedit-page-title.page-title{
+	color: #fff;
+	padding-top: 20px;
+	padding-left: 57px;
+}*/
+
+.menu-item a.is-active{
+	margin-left: 25px;
+}
+ul.tabs.primary{
+	background-color: #465a63;
+}
+a.is-active{
+	background-color: #324146 !important;
+}
+ul.tabs.primary li a{
+	display: block;
+	padding: 10px 20px;
+	text-align: center;
+	color: #fff;
+}
+/*.path-frontpage div#block-portal-page-title{
+	background-color: #66c6e7;
+	padding: 20px;
+}*/
+ul.tabs.primary{
+	margin-top: 25px;
+}
+.layout-content #block-portal-page-title .path-frontpage div#block-portal-page-title{
+	padding: 5px;
+}
+.path-user h1.js-quickedit-page-title.page-title{
+	color: #fff;
+	font-weight: normal;
+	font-size: 3.0em;
+}
+ul.tabs.primary a:hover{
+	background-color: #324146;
+}
+/*******create resource css by Rukayya********/
+body.user-logged-in.path-node #node-dcx-resource-list-05-10-2015-form label {
+	display: block;
+	font-weight: bold;
+}
+#node-dcx-resource-list-05-10-2015-form .js-form-item.form-item.js-form-type-entity-autocomplete.form-type-entity-autocomplete.js-form-item-field-test-0-field-account-name-0-target-id.form-item-field-test-0-field-account-name-0-target-id, #node-dcx-resource-list-05-10-2015-form div#edit-field-test-0-field-start-date-wrapper{
+	margin-bottom: 1em;
+}
+#node-dcx-resource-list-05-10-2015-form div#edit-field-resume-0-upload--description{
+	padding-top: 10px;
+}
+#node-dcx-resource-list-05-10-2015-form input#edit-field-test-add-more,#node-dcx-resource-list-05-10-2015-form input#edit-field-test-0-actions-remove-button, #node-dcx-resource-list-05-10-2015-form input#edit-submit, #node-dcx-resource-list-05-10-2015-form input#edit-preview{
+	background-color: #00a0d7;
+	color: #fff;
+	font-size: 1.125em;
+	padding: 8px 14px;
+}
+#node-dcx-resource-list-05-10-2015-form input#edit-field-test-add-more,#node-dcx-resource-list-05-10-2015-form input#edit-field-test-0-actions-remove-button {
+  padding :3px;
+}
+#node-dcx-resource-list-05-10-2015-form  input#edit-field-resume-0-upload{
+	background-color: #00a0d7;
+	color: #fff;
+	font-size: 1.125em;
+	padding: 8px 6px;
+}
+#node-dcx-resource-list-05-10-2015-form h4.label.js-form-required.form-required{
+	margin-right: 20em;
+}
+#node-dcx-resource-list-05-10-2015-form .js-form-item.form-item.js-form-type-entity-autocomplete.form-type-entity-autocomplete.js-form-item-field-test-0-field-account-name-0-target-id.form-item-field-test-0-field-account-name-0-target-id{
+	margin-top: 1em;
+}
+/*
+div#block-portal-page-title{
+	background-color: #66c6e7;
+}
+*/
+/*
+h1.js-quickedit-page-title.page-title{
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	padding-left: 0.6em;
+}
+*/
+/*******edit resource css by Rukayya********/
+.user-logged-in #node-dcx-resource-list-05-10-2015-edit-form label{
+  display: block;
+  font-weight: bold;
+}
+#node-dcx-resource-list-05-10-2015-edit-form div#edit-field-birthdate-wrapper, #node-dcx-resource-list-05-10-2015-edit-form div#edit-field-transfer-out-date-wrapper, #node-dcx-resource-list-05-10-2015-edit-form div#edit-field-resigned-date-wrapper{
+  margin-bottom: 1em;
+}
+#node-dcx-resource-list-05-10-2015-form div#edit-field-birthdate-wrapper, #node-dcx-resource-list-05-10-2015-form div#edit-field-transfer-out-date-wrapper, #node-dcx-resource-list-05-10-2015-form div#edit-field-resigned-date-wrapper{
+  margin-bottom: 1em;
+}
+#node-dcx-resource-list-05-10-2015-edit-form input#edit-field-test-add-more,#node-dcx-resource-list-05-10-2015-edit-form input#edit-field-test-0-actions-remove-button, #node-dcx-resource-list-05-10-2015-edit-form input#edit-submit, #node-dcx-resource-list-05-10-2015-edit-form input#edit-preview{
+  background-color: #00a0d7;
+  color: #fff;
+  font-size: 1.125em;
+  padding: 8px 14px;
+}
+#node-dcx-resource-list-05-10-2015-edit-form  input#edit-field-resume-0-upload,#node-dcx-resource-list-05-10-2015-edit-form input#edit-field-refer-to-add-more, #node-dcx-resource-list-05-10-2015-form input#edit-field-refer-to-add-more{
+  background-color: #00a0d7;
+  color: #fff;
+  font-size: 1.125em;
+  padding: 8px 6px;
+}
+#node-dcx-resource-list-05-10-2015-edit-form .js-form-item.form-item.js-form-type-entity-autocomplete.form-type-entity-autocomplete.js-form-item-field-test-0-field-account-name-0-target-id.form-item-field-test-0-field-account-name-0-target-id, #node-dcx-resource-list-05-10-2015-edit-form div#edit-field-test-0-field-start-date-wrapper{
+  margin-bottom: 1em;
+}
+#node-dcx-resource-list-05-10-2015-edit-form h4.label.js-form-required.form-required{
+  margin-right: 20em;
+}
+#node-dcx-resource-list-05-10-2015-edit-form div#edit-field-resume-0-upload--description{
+  padding-top: 10px;
+}
+#node-dcx-resource-list-05-10-2015-edit-form .js-form-item.form-item.js-form-type-entity-autocomplete.form-type-entity-autocomplete.js-form-item-field-test-0-field-account-name-0-target-id.form-item-field-test-0-field-account-name-0-target-id{
+margin-top: 1em;
+}
+/** Upload From **/
+form.csvimport-import-form {
+ margin-top:10px;
+ font-family: serif;
+}
+form.csvimport-import-form  .js-form-item-import {
+ padding: 10px;
+ border : 1px solid gray;
+}
+form.csvimport-import-form button {
+color: #fff;
+background-color: #00a0d7;
+}
+/*** bench list **/
+.bench-list {
+ margin-top: 25px;
+}
+#edit-submit,.button {
+	padding: 6px;
+    width: 90px;
+}
+#edit-field-gd-0-value {
+	margin-left: 20px;
+}

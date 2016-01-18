@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * Implements hook_permission()
+ */
+
+/*function storeextend_form_alter(&$form, &$form_state, $form_id) {
+    if(strstr($form_id, 'commerce_customer_ui_customer_profile_form')) {
+      $form['expire_date'] = array(
+      '#type' => 'date',
+      '#title' => t('Set Expiration Date for this Group'),
+      '#description' => t('Change this date to set Expiration of Role.'),
+    '#default_value' => $date_default_value,
+    '#weight' => 1,
+    );
+
+        // Load the current product entity
+        $prod = commerce_product_load_by_sku($form_state['default_product']->sku);
+
+        // Check and see if the produt is customizeable or not, and then react
+        $customizeable = $prod->field_prod_customizable['und'][0]['value'];
+        if(isset($customizeable) && $customizeable == 1) {
+            // Grab the custom label and instruction
+            $customize_label = $prod->field_prod_customize_label['und'][0]['value'];
+            $customize_instruction = $prod->field_prod_customize_instruction['und'][0]['value'];
+
+            // Alter the field to display the custom label and instruction
+            $form['line_item_fields']['field_prod_comments']['und'][0]['value']['#title'] = $customize_label;
+            $form['line_item_fields']['field_prod_comments']['und'][0]['value']['#description'] = $customize_instruction;
+        }
+        else {
+            // If not a customizeable product, then make the field hidden and not required
+            $form['line_item_fields']['field_prod_comments']['und'][0]['value']['#type'] = 'hidden';
+            $form['line_item_fields']['field_prod_comments']['und'][0]['value']['#required'] = 0;
+        }
+    }
+}*/
